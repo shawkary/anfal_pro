@@ -11,6 +11,7 @@ class CustomBottomNav extends StatelessWidget {
       onTap: (index){
         cubit.navBarIndex(index);
       },
+      selectedIconTheme: const IconThemeData(size: 30),
       unselectedItemColor: Colors.grey,
       selectedItemColor: Colors.blue,
       showUnselectedLabels: true,

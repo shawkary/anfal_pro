@@ -27,6 +27,15 @@ class CustomAppBar extends StatelessWidget {
               Text('مرحبا بك,', style: Styles.textStyle14.copyWith(color: Colors.white)),
               Text('فيصل الفهاد', style: Styles.textStyle14.copyWith(color: Colors.white)),
             ],
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: CircleAvatar(
+              radius: 20,
+                backgroundColor: Colors.teal.shade400,
+                child: const Icon(Icons.notifications_active_outlined, color: Colors.white,),
+            ),
           )
         ],
       ),
