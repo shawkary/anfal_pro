@@ -3,7 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
 class CustomPageIndicator extends StatelessWidget {
-  const CustomPageIndicator({super.key, required this.controller});
+  const CustomPageIndicator(this.controller, {super.key});
   final PageController controller;
 
   @override

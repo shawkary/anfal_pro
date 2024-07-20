@@ -1,15 +1,16 @@
+import 'package:buildcondition/buildcondition.dart';
 import 'package:flutter/material.dart';
 import 'package:ibrahim_project/core/custom_widgets/text_form_field.dart';
-import 'package:ibrahim_project/core/utiles/components.dart';
-import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/login/presentation/login_cubit/cubit.dart';
+import 'package:ibrahim_project/features/login/presentation/login_cubit/states.dart';
 import '../../../../../core/custom_widgets/material_button.dart';
 import '../../../../../core/utiles/styles.dart';
 
 
 class LoginForm extends StatelessWidget {
-  const LoginForm(this.cubit, {super.key});
+  const LoginForm(this.cubit, this.states, {super.key});
   final LoginCubit cubit;
+  final LoginStates states;
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +45,22 @@ class LoginForm extends StatelessWidget {
           Text('نسيت كلمة المرور ؟',
               style: Styles.textStyle16.copyWith(color: const Color(0xff01B2F8))),
           const SizedBox(height: 15),
-          CustomButton(
-            onPressed: ()
-            {
-              if(formKey.currentState!.validate()){
-                navigateAndFinish(context, const HomeView());
-              }
-            },
-            text: 'تسجيل الدخول',
-            buttonColor: Colors.blue,
+          BuildCondition(
+            condition: states is !LoadingLoginState,
+            builder: (context) => CustomButton(
+              onPressed: ()
+              {
+                if(formKey.currentState!.validate()){
+                  cubit.login(
+                    email: cubit.loginEmailController.text,
+                    password: cubit.loginPasswordController.text,
+                  );
+                }
+              },
+              text: 'تسجيل الدخول',
+              buttonColor: Colors.blue,
+            ),
+            fallback: (context) => const Center(child: CircularProgressIndicator()),
           ),
         ],
       ),

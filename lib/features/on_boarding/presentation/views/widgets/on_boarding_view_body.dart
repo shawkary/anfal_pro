@@ -10,15 +10,15 @@ class OnBoardingViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageController = PageController();
+    final PageController controller = PageController();
     bool isLast = false;
     return Column(
       children: [
-        CustomPageIndicator(controller: pageController),
+        CustomPageIndicator(controller),
         CustomPageView(
-          controller: pageController,
+          controller,
           onPressed: () {
-            pageController.nextPage(
+            controller.nextPage(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn);
             if(isLast){
@@ -28,6 +28,8 @@ class OnBoardingViewBody extends StatelessWidget {
           onPageChanged: (index) {
             if(index == 2){
               isLast = true;
+            }else{
+              isLast = false;
             }
           },
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ibrahim_project/core/custom_widgets/material_button.dart';
+import 'package:ibrahim_project/features/home/presentation/views/widgets/settings/widgets/button_log_out.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/settings/widgets/personal_image.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/settings/widgets/setting_change_password.dart';
 import 'package:ibrahim_project/features/home/presentation/views/widgets/settings/widgets/setting_common_questions.dart';
@@ -45,11 +45,7 @@ class SettingsViewBody extends StatelessWidget {
             const SizedBox(height: 15),
             const WhoAreWe(),
             const SizedBox(height: 20),
-            CustomButton(
-                onPressed: (){},
-              height: 55,
-              text: 'تسجيل الخروج',
-            )
+            const ButtonLogOut(),
           ],
         ),
       ),

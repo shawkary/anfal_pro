@@ -38,6 +38,10 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_bloc: ^8.1.6
   easy_stepper: ^0.8.5
+  dio: ^5.4.3
+  fluttertoast: ^8.2.5
+  buildcondition: ^0.0.4
+
 
 
 dev_dependencies:

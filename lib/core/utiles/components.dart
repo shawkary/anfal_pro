@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 navigateTo(context, widget){
@@ -43,4 +44,21 @@ class MyBlocObserver extends BlocObserver {
     super.onClose(bloc);
     print('onClose -- ${bloc.runtimeType}');
   }
+}
+
+////////////////////////////////////////////////////////////////////
+
+void showToast({
+  required String msg,
+  Color backgroundColor = Colors.green,
+})async{
+   Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: backgroundColor,
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
 }

@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibrahim_project/core/utiles/components.dart';
+import 'package:ibrahim_project/core/utiles/dio_helper.dart';
+import 'package:ibrahim_project/features/home/presentation/views/home_view.dart';
 import 'package:ibrahim_project/features/login/presentation/views/widgets/login_form.dart';
 import 'package:ibrahim_project/features/login/presentation/views/widgets/register_form.dart';
 import 'package:ibrahim_project/features/login/presentation/views/widgets/two_button.dart';
@@ -13,8 +17,19 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => LoginCubit(),
-      child: BlocBuilder<LoginCubit, LoginStates>(
+      create: (BuildContext context) => LoginCubit(DioHelper(Dio())),
+      child: BlocConsumer<LoginCubit, LoginStates>(
+        listener: (context, state) {
+          if(state is SuccessLoginState){
+            showToast(msg: 'Login Successfully');
+              navigateTo(context, const HomeView());
+          }else if(state is ErrorLoginState){
+            showToast(
+                msg: 'Login, password or db invalid Access Denied',
+                backgroundColor: Colors.red,
+            );
+          }
+        },
         builder: (BuildContext context, state) {
           LoginCubit cubit = LoginCubit.get(context);
           return SingleChildScrollView(
@@ -27,7 +42,7 @@ class LoginViewBody extends StatelessWidget {
                   const SizedBox(height: 20),
                   TwoButtons(cubit),
                   const SizedBox(height: 30),
-                  cubit.isLogin ?  LoginForm(cubit) : RegisterForm(cubit),
+                  cubit.isLogin ?  LoginForm(cubit, state) : RegisterForm(cubit),
                 ],
               ),
             ),

@@ -3,14 +3,14 @@ import 'package:ibrahim_project/core/custom_widgets/material_button.dart';
 import 'on_boarding_model.dart';
 
 class CustomPageView extends StatelessWidget {
-  const CustomPageView({
+  const CustomPageView(this.controller,
+      {
     super.key,
-    required this.controller,
     required this.onPressed,
     required this.onPageChanged,
   });
 
-  final PageController controller;
+  final PageController? controller;
   final void Function()? onPressed;
   final void Function(int)? onPageChanged;
 
